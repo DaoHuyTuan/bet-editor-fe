@@ -1,11 +1,12 @@
 import { http, createConfig } from 'wagmi'
 import { mainnet, sepolia } from 'wagmi/chains'
-import { coinbaseWallet, injected, walletConnect } from 'wagmi/connectors'
+import { coinbaseWallet, injected, metaMask, walletConnect } from 'wagmi/connectors'
 
 export const config = createConfig({
   chains: [mainnet, sepolia],
   connectors: [
     injected(),
+    // metaMask(),
     coinbaseWallet({ appName: 'Create Wagmi' }),
     walletConnect({ projectId: import.meta.env.VITE_WC_PROJECT_ID }),
   ],
@@ -16,7 +17,5 @@ export const config = createConfig({
 })
 
 declare module 'wagmi' {
-  interface Register {
-    config: typeof config
-  }
+  // Remove the declaration of 'Register'
 }
