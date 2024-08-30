@@ -4,14 +4,21 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "bunx --bun vite",
+    "dev": "vite",
     "build": "tsc && vite build",
     "lint": "biome check .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@rainbow-me/rainbowkit": "^2.1.2",
     "@tanstack/react-query": "5.0.5",
     "@tiptap-pro/extension-unique-id": "^2.8.9",
+    "@tiptap/core": "^2.4.0",
+    "@tiptap/extension-color": "^2.4.0",
+    "@tiptap/extension-placeholder": "^2.4.0",
+    "@tiptap/extension-text-style": "^2.4.0",
+    "@tiptap/pm": "^2.4.0",
+    "@tiptap/react": "^2.4.0",
     "@tiptap/starter-kit": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -24,7 +31,10 @@
     "@types/react-dom": "^18.2.8",
     "@vitejs/plugin-react": "^4.1.0",
     "@wagmi/cli": "latest",
+    "autoprefixer": "^10.4.19",
     "buffer": "^6.0.3",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
     "typescript": "^5.2.2",
     "vite": "^4.4.9"
   }
