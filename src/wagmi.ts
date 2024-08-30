@@ -1,12 +1,21 @@
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
 import { http, createConfig } from "wagmi";
 import { mainnet, sepolia } from "wagmi/chains";
-import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors";
+import {
+  coinbaseWallet,
+  injected,
+  metaMask,
+  walletConnect,
+} from "wagmi/connectors";
 
 export const config = getDefaultConfig({
   chains: [mainnet, sepolia],
-  appName: "Wagmi",
-  projectId: "20e51afb11d9c71a19fd24ad96f622f2",
+  connectors: [
+    injected(),
+    // metaMask(),
+    coinbaseWallet({ appName: "Create Wagmi" }),
+    walletConnect({ projectId: import.meta.env.VITE_WC_PROJECT_ID }),
+  ],
   transports: {
     [mainnet.id]: http(),
     [sepolia.id]: http(),
@@ -14,7 +23,5 @@ export const config = getDefaultConfig({
 });
 
 declare module "wagmi" {
-  interface Register {
-    config: typeof config;
-  }
+  // Remove the declaration of 'Register'
 }
