@@ -1,3 +1,154 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*
+ * The Typekit service used to deliver this font or fonts for use on websites
+ * is provided by Adobe and is subject to these Terms of Use
+ * http://www.adobe.com/products/eulas/tou_typekit. For font license
+ * information, see the list below.
+ *
+ * lorimer-no-2:
+ *   - http://typekit.com/eulas/00000000000000007735cdde
+ *   - http://typekit.com/eulas/00000000000000007735cde2
+ * lorimer-no-2-stencil:
+ *   - http://typekit.com/eulas/00000000000000007735cdc2
+ * soleil:
+ *   - http://typekit.com/eulas/00000000000000007735a1ac
+ *   - http://typekit.com/eulas/00000000000000007735a1b1
+ *   - http://typekit.com/eulas/00000000000000007735a1be
+ *   - http://typekit.com/eulas/00000000000000007735a1c3
+ *
+ * © 2009-2024 Adobe Systems Incorporated. All Rights Reserved.
+ */
+/*{"last_published":"2024-09-03 08:26:22 UTC"}*/
+
+@import url('https://p.typekit.net/p.css?s=1&k=mjp4fhc&ht=tk&f=17001.17005.22622.22658.42736.42737.42738&a=178147836&app=typekit&e=css');
+
+@font-face {
+  font-family: 'soleil';
+  src:
+    url('https://use.typekit.net/af/5d2da8/00000000000000007735a1ac/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3')
+      format('woff2'),
+    url('https://use.typekit.net/af/5d2da8/00000000000000007735a1ac/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3')
+      format('woff'),
+    url('https://use.typekit.net/af/5d2da8/00000000000000007735a1ac/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3')
+      format('opentype');
+  font-display: auto;
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'soleil';
+  src:
+    url('https://use.typekit.net/af/3ec29d/00000000000000007735a1b1/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3')
+      format('woff2'),
+    url('https://use.typekit.net/af/3ec29d/00000000000000007735a1b1/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3')
+      format('woff'),
+    url('https://use.typekit.net/af/3ec29d/00000000000000007735a1b1/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3')
+      format('opentype');
+  font-display: auto;
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'soleil';
+  src:
+    url('https://use.typekit.net/af/19bbb3/00000000000000007735a1be/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3')
+      format('woff2'),
+    url('https://use.typekit.net/af/19bbb3/00000000000000007735a1be/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3')
+      format('woff'),
+    url('https://use.typekit.net/af/19bbb3/00000000000000007735a1be/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3')
+      format('opentype');
+  font-display: auto;
+  font-style: italic;
+  font-weight: 700;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'soleil';
+  src:
+    url('https://use.typekit.net/af/d9e6fa/00000000000000007735a1c3/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3')
+      format('woff2'),
+    url('https://use.typekit.net/af/d9e6fa/00000000000000007735a1c3/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3')
+      format('woff'),
+    url('https://use.typekit.net/af/d9e6fa/00000000000000007735a1c3/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3')
+      format('opentype');
+  font-display: auto;
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'lorimer-no-2';
+  src:
+    url('https://use.typekit.net/af/d8b7fa/00000000000000007735cdde/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3')
+      format('woff2'),
+    url('https://use.typekit.net/af/d8b7fa/00000000000000007735cdde/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3')
+      format('woff'),
+    url('https://use.typekit.net/af/d8b7fa/00000000000000007735cdde/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3')
+      format('opentype');
+  font-display: auto;
+  font-style: normal;
+  font-weight: 900;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'lorimer-no-2';
+  src:
+    url('https://use.typekit.net/af/0adfca/00000000000000007735cde2/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i9&v=3')
+      format('woff2'),
+    url('https://use.typekit.net/af/0adfca/00000000000000007735cde2/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i9&v=3')
+      format('woff'),
+    url('https://use.typekit.net/af/0adfca/00000000000000007735cde2/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i9&v=3')
+      format('opentype');
+  font-display: auto;
+  font-style: italic;
+  font-weight: 900;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'lorimer-no-2-stencil';
+  src:
+    url('https://use.typekit.net/af/5962df/00000000000000007735cdc2/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3')
+      format('woff2'),
+    url('https://use.typekit.net/af/5962df/00000000000000007735cdc2/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3')
+      format('woff'),
+    url('https://use.typekit.net/af/5962df/00000000000000007735cdc2/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3')
+      format('opentype');
+  font-display: auto;
+  font-style: normal;
+  font-weight: 900;
+  font-stretch: normal;
+}
+
+.tk-soleil {
+  font-family: 'soleil', sans-serif;
+}
+.tk-lorimer-no-2 {
+  font-family: 'lorimer-no-2', sans-serif;
+}
+.tk-lorimer-no-2-stencil {
+  font-family: 'lorimer-no-2-stencil', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'soleil';
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}

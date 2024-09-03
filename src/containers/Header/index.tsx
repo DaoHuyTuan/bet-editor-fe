@@ -1,9 +1,9 @@
-import { Connect } from "../../components/Connect";
+import { Connect } from '../../components/Connect'
 
 export const Header = () => {
   return (
-    <div className="flex w-full justify-end p-[10px]">
+    <div className="flex w-full justify-end px-[20px] py-[15px]">
       <Connect />
     </div>
-  );
-};
+  )
+}
