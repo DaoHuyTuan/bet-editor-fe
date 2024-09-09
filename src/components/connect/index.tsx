@@ -37,7 +37,7 @@ export const Connect = () => {
   )
 
   const createSignature = useCallback(
-    async ({ nonce }) => {
+    async ({ nonce }: { nonce: string }) => {
       try {
         const signature = await signMessage(config, {
           message: nonce

@@ -5,8 +5,7 @@ import { EditorContainer } from './Container'
 export default Node.create({
   name: 'reactComponent',
   group: 'block',
-  atom: true,
-
+  content: 'inline*',
   addAttributes() {
     return {
       count: {
@@ -23,8 +22,22 @@ export default Node.create({
     ]
   },
 
+  addKeyboardShortcuts() {
+    return {
+      'Mod-Enter': () => {
+        return this.editor
+          .chain()
+          .insertContentAt(this.editor.state.selection.head, {
+            type: this.type.name
+          })
+          .focus()
+          .run()
+      }
+    }
+  },
+
   renderHTML({ HTMLAttributes }) {
-    return ['react-component', mergeAttributes(HTMLAttributes)]
+    return ['react-component', mergeAttributes(HTMLAttributes), 0]
   },
 
   addNodeView() {

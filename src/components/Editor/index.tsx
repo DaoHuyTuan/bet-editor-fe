@@ -6,6 +6,7 @@ import { ToolBar } from './ToolBar'
 import Text from '@tiptap/extension-text'
 import Paragraph from '@tiptap/extension-paragraph'
 import EditorContainer from './Extensions/Container'
+import { useState } from 'react'
 
 const extensions = [
   StarterKit,
@@ -21,6 +22,9 @@ const extensions = [
 ]
 
 export const Editor = () => {
+  const [content, setContent] = useState(
+    '<react-component count="0"></react-component><br/>hello'
+  )
   const editor = useEditor({
     autofocus: true,
     editorProps: {
@@ -29,15 +33,19 @@ export const Editor = () => {
       }
     },
     extensions,
-    content: '<react-component count="0"></react-component><br/>hello',
+    content: content,
     injectCSS: false
   })
 
-  console.log('editor', editor)
+  console.log('content', editor?.state.doc.toJSON())
+  console.log('content', editor?.state.doc.toJSON())
   return (
     <div className="flex h-full flex-col gap-[20px]">
       <ToolBar editor={editor} />
       <EditorContent
+        onChange={({ editor }) => {
+          setContent(editor.getHTML())
+        }}
         editor={editor}
         // className="w-full h-full"
       />
