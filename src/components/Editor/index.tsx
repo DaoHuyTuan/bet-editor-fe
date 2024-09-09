@@ -5,9 +5,11 @@ import Placeholder from '@tiptap/extension-placeholder'
 import { ToolBar } from './ToolBar'
 import Text from '@tiptap/extension-text'
 import Paragraph from '@tiptap/extension-paragraph'
+import EditorContainer from './Extensions/Container'
 
 const extensions = [
   StarterKit,
+  EditorContainer,
   Placeholder.configure({
     placeholder: 'Start typing...'
   }),
@@ -27,7 +29,7 @@ export const Editor = () => {
       }
     },
     extensions,
-    content: '',
+    content: '<react-component count="0"></react-component><br/>hello',
     injectCSS: false
   })
 
