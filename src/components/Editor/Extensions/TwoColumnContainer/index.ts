@@ -1,15 +1,16 @@
 import { mergeAttributes, Node } from '@tiptap/core'
 import { ReactNodeViewRenderer } from '@tiptap/react'
-import { EditorContainer } from './Container'
+import { TwoColumnContainer } from './TwoColumnContainer'
+import { Extensions } from '../config'
 
 export default Node.create({
-  name: 'reactComponent',
+  name: Extensions.TwoColumnContainer,
   group: 'block',
   content: 'inline*',
   addAttributes() {
     return {
-      count: {
-        default: 0
+      url: {
+        default: ''
       }
     }
   },
@@ -17,7 +18,7 @@ export default Node.create({
   parseHTML() {
     return [
       {
-        tag: 'react-component'
+        tag: 'TwoColumnContainer'
       }
     ]
   },
@@ -37,10 +38,10 @@ export default Node.create({
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['react-component', mergeAttributes(HTMLAttributes), 0]
+    return [Extensions.TwoColumnContainer, mergeAttributes(HTMLAttributes), 0]
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(EditorContainer)
+    return ReactNodeViewRenderer(TwoColumnContainer)
   }
 })

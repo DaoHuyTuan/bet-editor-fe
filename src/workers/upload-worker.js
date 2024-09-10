@@ -1,78 +1,101 @@
-// upload-worker.js
-const CACHE_NAME = 'media-upload-cache'
+// service-worker.js
 
-self.addEventListener('message', async event => {
-  const { type, payload } = event.data
+const CACHE_NAME = 'image-upload-cache-v1'
+const UPLOAD_QUEUE_NAME = 'image-upload-queue'
 
-  switch (type) {
-    case 'UPLOAD':
-      await handleUpload(payload)
-      break
-    case 'LOAD':
-      await handleLoad()
-      break
-    case 'REMOVE':
-      await handleRemove(payload)
-      break
-    default:
-      console.error('Unknown message type:', type)
+self.addEventListener('install', event => {
+  event.waitUntil(caches.open(CACHE_NAME))
+})
+
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(name => {
+          if (name !== CACHE_NAME) {
+            return caches.delete(name)
+          }
+        })
+      )
+    })
+  )
+})
+
+self.addEventListener('fetch', event => {
+  if (event.request.url.includes('/upload-image')) {
+    event.respondWith(handleImageUpload(event.request))
   }
 })
 
-async function handleUpload(file) {
-  try {
-    const cache = await caches.open(CACHE_NAME)
-    const blob = await file.arrayBuffer()
-    const response = new Response(blob)
-    const uniqueUrl = `/${Date.now()}-${file.name}`
-    await cache.put(uniqueUrl, response)
+async function handleImageUpload(request) {
+  const formData = await request.formData()
+  const image = formData.get('image')
 
-    self.postMessage({
-      type: 'UPLOAD_SUCCESS',
-      payload: {
-        uid: uniqueUrl,
-        name: file.name,
-        size: file.size,
-        type: file.type,
-        status: 'cached',
-        progress: 100
-      }
+  if (image) {
+    const cache = await caches.open(CACHE_NAME)
+    const response = new Response(image, {
+      headers: { 'Content-Type': image.type }
     })
-  } catch (error) {
-    self.postMessage({ type: 'UPLOAD_ERROR', payload: error.message })
+
+    const imageName = `image_${Date.now()}.${image.type.split('/')[1]}`
+    await cache.put(`/pending-uploads/${imageName}`, response)
+
+    // Add to upload queue
+    const queue = await getUploadQueue()
+    queue.push(imageName)
+    await saveUploadQueue(queue)
+
+    return new Response(JSON.stringify({ status: 'cached', imageName }), {
+      headers: { 'Content-Type': 'application/json' }
+    })
   }
+
+  return new Response(JSON.stringify({ error: 'No image provided' }), {
+    status: 400,
+    headers: { 'Content-Type': 'application/json' }
+  })
 }
 
-async function handleLoad() {
-  try {
-    const cache = await caches.open(CACHE_NAME)
-    const keys = await cache.keys()
-    const mediaList = await Promise.all(
-      keys.map(async key => {
-        const response = await cache.match(key)
-        const blob = await response.blob()
-        return {
-          uid: key.url,
-          name: key.url.split('/').pop(),
-          size: blob.size,
-          type: blob.type,
-          status: 'cached',
-          progress: 100
-        }
-      })
-    )
-    self.postMessage({ type: 'LOAD_SUCCESS', payload: mediaList })
-  } catch (error) {
-    self.postMessage({ type: 'LOAD_ERROR', payload: error.message })
-  }
+async function getUploadQueue() {
+  const cache = await caches.open(CACHE_NAME)
+  const queueResponse = await cache.match(UPLOAD_QUEUE_NAME)
+  return queueResponse ? await queueResponse.json() : []
 }
 
-async function handleRemove(uid) {
-  try {
-    const cache = await caches.open(CACHE_NAME)
-    await cache.delete(uid)
-    self.postMessage({ type: 'REMOVE_SUCCESS', payload: uid })
-  } catch (error) {
-    self.postMessage({ type: 'REMOVE_ERROR', payload: error.message })
+async function saveUploadQueue(queue) {
+  const cache = await caches.open(CACHE_NAME)
+  await cache.put(UPLOAD_QUEUE_NAME, new Response(JSON.stringify(queue)))
+}
+
+self.addEventListener('message', event => {
+  if (event.data === 'uploadToS3') {
+    event.waitUntil(uploadPendingImagesToS3())
   }
+})
+
+async function uploadPendingImagesToS3() {
+  const queue = await getUploadQueue()
+  const cache = await caches.open(CACHE_NAME)
+
+  for (const imageName of queue) {
+    const imageResponse = await cache.match(`/pending-uploads/${imageName}`)
+    if (imageResponse) {
+      const imageBlob = await imageResponse.blob()
+
+      // Here you would implement the actual S3 upload
+      // This is a placeholder for demonstration purposes
+      console.log(`Uploading ${imageName} to S3...`)
+
+      // After successful upload, remove from cache and queue
+      await cache.delete(`/pending-uploads/${imageName}`)
+    }
+  }
+
+  // Clear the queue after processing all images
+  await saveUploadQueue([])
+
+  // Notify the main thread that uploads are complete
+  self.clients.matchAll().then(clients => {
+    clients.forEach(client => client.postMessage('uploadsComplete'))
+  })
 }

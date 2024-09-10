@@ -1,7 +1,7 @@
 import { NodeViewContent, NodeViewProps, NodeViewWrapper } from '@tiptap/react'
 import { EditorImage } from '../../components/Image'
 
-export const EditorContainer = (props: NodeViewProps) => {
+export const TwoColumnContainer = (props: NodeViewProps) => {
   console.log('props', props)
   return (
     <NodeViewWrapper className="react-component">

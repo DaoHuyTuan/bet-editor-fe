@@ -12,10 +12,17 @@ export const EditorImage = (props: Props) => {
     event.stopPropagation()
     const files = event.target.files
     if (files && files[0] && files[0].type.substr(0, 5) === 'image') {
-      setSelectedImage(URL.createObjectURL(files[0]))
-      props.elProps.updateAttributes({
-        count: props.elProps.node.attrs.count + 1
-      })
+      const fileReader = new FileReader()
+      fileReader.onload = e => {
+        const imageDataUrl = e.target?.result as string
+        setSelectedImage(imageDataUrl)
+        props.elProps.updateAttributes({
+          count: props.elProps.node.attrs.count + 1
+        })
+        // Assuming there's a function to send the image data to a web worker for storage
+        storeImageInWebWorker(imageDataUrl)
+      }
+      fileReader.readAsDataURL(files[0])
     } else {
       setSelectedImage(null)
       alert('Please select an image file')

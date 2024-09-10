@@ -27,6 +27,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "viem": "latest",
+    "vite-plugin-pwa": "^0.20.5",
     "wagmi": "latest",
     "zustand": "^4.5.5"
   },

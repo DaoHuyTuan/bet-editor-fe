@@ -5,12 +5,12 @@ import Placeholder from '@tiptap/extension-placeholder'
 import { ToolBar } from './ToolBar'
 import Text from '@tiptap/extension-text'
 import Paragraph from '@tiptap/extension-paragraph'
-import EditorContainer from './Extensions/Container'
+import TwoColumnContainer from './Extensions/TwoColumnContainer'
 import { useState } from 'react'
 
 const extensions = [
   StarterKit,
-  EditorContainer,
+  TwoColumnContainer,
   Placeholder.configure({
     placeholder: 'Start typing...'
   }),
@@ -23,7 +23,7 @@ const extensions = [
 
 export const Editor = () => {
   const [content, setContent] = useState(
-    '<react-component count="0"></react-component><br/>hello'
+    `<TwoColumnContainer count="0"></TwoColumnContainer><br/>hello`
   )
   const editor = useEditor({
     autofocus: true,
