@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useAccount, useConnect, useDisconnect } from 'wagmi'
+import { useAccount } from 'wagmi'
 import { connect, signMessage, switchChain } from 'wagmi/actions'
 import { config } from '../../wagmi'
 import { injected } from 'wagmi/connectors'
