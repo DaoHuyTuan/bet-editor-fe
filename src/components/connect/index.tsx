@@ -29,7 +29,6 @@ export const Connect = () => {
         } else {
         }
       } catch (error) {
-        debugger
         console.log('error', error)
       }
     },
@@ -65,7 +64,6 @@ export const Connect = () => {
         createSignature({ nonce })
       } else {
         const data = await result.json()
-        debugger
         if (data.error_code == 'USER_NOT_FOUND') {
           createSignature({ nonce: data.nonce })
         }
@@ -95,7 +93,6 @@ export const Connect = () => {
         console.log('data', data)
       } else {
         const data = await result.json()
-        debugger
       }
     } catch (error) {}
   }, [])

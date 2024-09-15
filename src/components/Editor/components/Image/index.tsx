@@ -77,7 +77,6 @@ export const EditorImage = (props: Props) => {
 
   const loadFile = async (event: ChangeEvent<HTMLInputElement>) => {
     event.stopPropagation()
-    debugger
     const files = event.target.files
     if (files && files[0] && files[0].type.substr(0, 5) === 'image') {
       await getImageUrl(files[0])
@@ -117,7 +116,6 @@ export const EditorImage = (props: Props) => {
       console.log('event', event)
       // event.preventDefault()
       event.stopPropagation()
-      debugger
       fileInputRef.current?.click()
     },
     [fileInputRef]

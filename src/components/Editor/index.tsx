@@ -6,16 +6,28 @@ import { ToolBar } from './ToolBar'
 import Text from '@tiptap/extension-text'
 import Paragraph from '@tiptap/extension-paragraph'
 import TwoColumnContainer from './Extensions/TwoColumnContainer'
+import TextAlign from '@tiptap/extension-text-align'
 import { useEffect, useState } from 'react'
 
 const extensions = [
-  StarterKit,
+  StarterKit.configure({
+    // Disable an included extension
+    history: false,
+
+    // Configure an included extension
+    heading: {
+      levels: [1, 2, 3]
+    }
+  }),
   TwoColumnContainer,
   Placeholder.configure({
     placeholder: 'Start typing...'
   }),
   Text,
   Paragraph,
+  TextAlign.configure({
+    types: ['heading', 'paragraph']
+  }),
   UniqueID.configure({
     types: ['heading', 'paragraph']
   })
@@ -29,6 +41,7 @@ export const Editor = () => {
   const [content, setContent] = useState(
     `<twoColumnContainer></twoColumnContainer><br>hello`
   )
+  const [title, setTitle] = useState('')
   const editor = useEditor({
     autofocus: true,
     editable: true,
@@ -53,6 +66,17 @@ export const Editor = () => {
   return (
     <div className="flex h-full flex-col gap-[20px]">
       <ToolBar editor={editor} />
+      <div>
+        <div className="flex flex-col">
+          <span>Title</span>
+          <input
+            value={title}
+            placeholder="Title"
+            className="w-[500px] px-[10px] py-[10px] border-[1px] border-[#b1b1b1] rounded-[4px] focus:outline-none"
+            onChange={e => setTitle(e.target.value)}
+          />
+        </div>
+      </div>
       <EditorContent
         onChange={({ editor }) => {
           setContent(editor.getHTML())
